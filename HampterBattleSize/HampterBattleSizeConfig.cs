@@ -46,7 +46,7 @@ namespace HampterBattleSize
         {
             return new MissionSpawnSettings(MissionSpawnSettings.InitialSpawnMethod.BattleSizeAllocating, 
                 MissionSpawnSettings.ReinforcementTimingMethod.GlobalTimer, 
-                MissionSpawnSettings.ReinforcementSpawnMethod.Wave, 
+                MissionSpawnSettings.ReinforcementSpawnMethod.Fixed, 
                 (float)HampterBattleSizeConfig.ReinforcementInterval, 
                 0f, 
                 0f, 

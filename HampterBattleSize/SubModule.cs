@@ -15,6 +15,13 @@ namespace HampterBattleSize
         {
             base.OnSubModuleLoad();
             Harmony harmony = new Harmony("com.HampterBattleSize");
+            harmony.PatchAll();
+
+            Type typeFromHandle = typeof(MissionAgentSpawnLogic);
+            Type nestedType = typeFromHandle.GetNestedType("MissionSide", AccessTools.all);
+            MethodInfo method = nestedType.GetMethod("SpawnTroops", AccessTools.all);
+            MethodInfo method2 = typeof(PatchMissionAgentSpawnLogic).GetMethod("SpawnTroopsPrefix");
+            harmony.Patch(method, new HarmonyMethod(method2), null, null, null);
 
             int[] value = new int[]
                 {
@@ -29,12 +36,6 @@ namespace HampterBattleSize
                 typeof(BannerlordConfig).GetField("_battleSizes", AccessTools.all).SetValue(null, value);
                 typeof(BannerlordConfig).GetField("_siegeBattleSizes", AccessTools.all).SetValue(null, value);
                 HampterBattleSizeConfig.ReadConfig();
-
-                Type typeFromHandle = typeof(MissionAgentSpawnLogic);
-                Type nestedType = typeFromHandle.GetNestedType("MissionSide", AccessTools.all);
-                MethodInfo method = nestedType.GetMethod("SpawnTroops", AccessTools.all);
-                MethodInfo method2 = typeof(PatchMissionAgentSpawnLogic).GetMethod("SpawnTroopsPrefix");
-                harmony.Patch(method, new HarmonyMethod(method2), null, null, null);
         }
 
         // Token: 0x0600000D RID: 13 RVA: 0x00002351 File Offset: 0x00000551
