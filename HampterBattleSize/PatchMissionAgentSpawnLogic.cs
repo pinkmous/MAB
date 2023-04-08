@@ -22,7 +22,7 @@ namespace HampterBattleSize
         [HarmonyPatch("MaxNumberOfTroopsForMission", MethodType.Getter)]
         private static bool MaxNumberOfTroopsForMissionPrefix(MissionAgentSpawnLogic __instance, ref int __result)
         {
-            InformationManager.DisplayMessage(new InformationMessage("MaxNumberOfTroopsForMission"));
+            // InformationManager.DisplayMessage(new InformationMessage("MaxNumberOfTroopsForMission"));
 
             __result = 1000;
             return false;
@@ -31,7 +31,7 @@ namespace HampterBattleSize
         // Token: 0x06000014 RID: 20 RVA: 0x000023E8 File Offset: 0x000005E8
         public static bool SpawnTroopsPrefix(MissionAgentSpawnLogic __instance, ref int __result)
         {
-            InformationManager.DisplayMessage(new InformationMessage("SpawnTroopsPrefix"));
+            // InformationManager.DisplayMessage(new InformationMessage("SpawnTroopsPrefix"));
 
             bool flag = __instance.InitialSpawnOver();
             if (flag)
@@ -74,7 +74,7 @@ namespace HampterBattleSize
         [HarmonyPatch("IsInitialSpawnOver", MethodType.Getter)]
         private static void IsInitialSpawnOverPostfix(MissionAgentSpawnLogic __instance, bool __result)
         {
-            InformationManager.DisplayMessage(new InformationMessage("IsInitialSpawnOver"));
+            // InformationManager.DisplayMessage(new InformationMessage("IsInitialSpawnOver"));
 
             bool flag = __result && !__instance.InitialSpawnOver();
             if (flag)
@@ -99,7 +99,7 @@ namespace HampterBattleSize
         [HarmonyPatch("TotalSpawnNumber", MethodType.Getter)]
         public static bool TotalSpawnNumberPrefix(MissionAgentSpawnLogic __instance, ref int __result)
         {
-            InformationManager.DisplayMessage(new InformationMessage("TotalSpawnNumberPrefix"));
+            // InformationManager.DisplayMessage(new InformationMessage("TotalSpawnNumberPrefix"));
 
             __result = Math.Max((__instance.HampterBattleSize() - __instance.NumberOfAgents) / 2 - 2, 0);
             return false;
